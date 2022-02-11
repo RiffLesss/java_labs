@@ -59,12 +59,12 @@ class default_simple_fraction{
     }
 }
 
-//Сложение двух дробей
-class addition{
+//Класс операций
+class operations{
     int[] first_fr;
     int[] second_fr;
 
-    public addition(int[] first_fr, int[] second_fr) {
+    public operations(int[] first_fr, int[] second_fr) {
         this.first_fr = first_fr;
         this.second_fr = second_fr;
     }
@@ -101,34 +101,14 @@ class addition{
         }
         return local_numerator + "/" + local_denominator;
     }
-}
-
-//Сложение дроби с дробью по умолчанию
-class default_addition {
-    int[] first_fr;
-
-    public default_addition(int[] first_fr) {
-        this.first_fr = first_fr;
-    }
 
     //Вычисление суммы дроби с дробью по умолчанию
-    public String addition_result() {
+    public String default_addition_result() {
         int local_numerator;
         int local_denominator;
         local_denominator = first_fr[1];
         local_numerator = first_fr[0] + first_fr[1];
         return local_numerator + "/" + local_denominator;
-    }
-}
-
-//Вычитание двух дробей
-class subtraction{
-    int[] first_fr;
-    int[] second_fr;
-
-    public subtraction(int[] first_fr, int[] second_fr) {
-        this.first_fr = first_fr;
-        this.second_fr = second_fr;
     }
 
     //вычисление разности
@@ -163,34 +143,14 @@ class subtraction{
         }
         return local_numerator + "/" + local_denominator;
     }
-}
-
-//Вычитание дроби из дробью по умолчанию
-class default_subtraction {
-    int[] first_fr;
-
-    public default_subtraction(int[] first_fr) {
-        this.first_fr = first_fr;
-    }
 
     //Вычисление разности дроби с дробью по умолчанию
-    public String subtraction_result() {
+    public String default_subtraction_result() {
         int local_numerator;
         int local_denominator;
         local_denominator = first_fr[1];
         local_numerator = first_fr[1] - first_fr[0];
         return local_numerator + "/" + local_denominator;
-    }
-}
-
-//Умножение двух дробей
-class multiplication {
-    int[] first_fr;
-    int[] second_fr;
-
-    public multiplication(int[] first_fr, int[] second_fr) {
-        this.first_fr = first_fr;
-        this.second_fr = second_fr;
     }
 
     //Вычисление произведения двух дробей
@@ -202,30 +162,10 @@ class multiplication {
         return local_numerator + "/" + local_denominator;
 
     }
-}
-
-//умножение дроби с дробью по умолчанию
-class default_multiplication {
-    int[] first_fr;
-
-    public default_multiplication(int[] first_fr) {
-        this.first_fr = first_fr;
-    }
 
     //Вычисление произведения дроби с дробью по умолчанию
-    public String multiplication_result() {
+    public String default_multiplication_result() {
         return first_fr[0] + "/" + first_fr[1];
-    }
-}
-
-//Деление
-class division {
-    int[] first_fr;
-    int[] second_fr;
-
-    public division(int[] first_fr, int[] second_fr) {
-        this.first_fr = first_fr;
-        this.second_fr = second_fr;
     }
 
     //Вычисление частного
@@ -242,18 +182,9 @@ class division {
         }
 
     }
-}
-
-//Деление дроби на дробь по умолчанию
-class default_division {
-    int[] first_fr;
-
-    public default_division(int[] first_fr) {
-        this.first_fr = first_fr;
-    }
 
     //Вычисление частного дроби
-    public String division_result() {
+    public String default_division_result() {
         return first_fr[1] + "/" + first_fr[0];
     }
 }
@@ -282,37 +213,29 @@ public class lab7 {
             in.close();
 
             //Создание классов дробей и операций над ними
+            default_simple_fraction default_fraction = new default_simple_fraction();
             simple_fraction first_fraction = new simple_fraction(num1, num2);
             simple_fraction second_fraction = new simple_fraction(num3, num4);
-            addition addition = new addition(first_fraction.create_fraction(), second_fraction.create_fraction());
-            subtraction subtraction = new subtraction(first_fraction.create_fraction(), second_fraction.create_fraction());
-            multiplication multiplication = new multiplication(first_fraction.create_fraction(), second_fraction.create_fraction());
-            division division = new division(first_fraction.create_fraction(), second_fraction.create_fraction());
+            operations operations = new operations(first_fraction.create_fraction(), second_fraction.create_fraction());
 
-            //Создание классов дроби по умолчанию и операций по умолчанию
-            default_simple_fraction default_fraction = new default_simple_fraction();
-            default_addition default_addition = new default_addition(first_fraction.create_fraction());
-            default_subtraction default_subtraction = new default_subtraction(first_fraction.create_fraction());
-            default_multiplication default_multiplication = new default_multiplication(first_fraction.create_fraction());
-            default_division default_division = new default_division(first_fraction.create_fraction());
 
             //Вывод результата операций с двумя дробями
             System.out.println();
             System.out.println("Первая дробь: " + first_fraction.display_fraction());
             System.out.println("Вторая дробь: " + second_fraction.display_fraction());
-            System.out.println("Сумма дробей: " + addition.addition_result());
-            System.out.println("Разность дробей: " + subtraction.subtraction_result());
-            System.out.println("Произведение дробей: " + multiplication.multiplication_result());
-            System.out.println("Частное дробей: " + division.division_result());
+            System.out.println("Сумма дробей: " + operations.addition_result());
+            System.out.println("Разность дробей: " + operations.subtraction_result());
+            System.out.println("Произведение дробей: " + operations.multiplication_result());
+            System.out.println("Частное дробей: " + operations.division_result());
 
             //Вывод результата операций с дробью по умолчанию
             System.out.println();
             System.out.println("Дробь по умолчанию: " + default_fraction.display_fraction());
             System.out.println("Первая дробь: " + first_fraction.display_fraction());
-            System.out.println("Сумма дробей: " + default_addition.addition_result());
-            System.out.println("Разность дробей: " + default_subtraction.subtraction_result());
-            System.out.println("Произведение дробей: " + default_multiplication.multiplication_result());
-            System.out.println("Частное дробей: " + default_division.division_result());
+            System.out.println("Сумма дробей: " + operations.default_addition_result());
+            System.out.println("Разность дробей: " + operations.default_subtraction_result());
+            System.out.println("Произведение дробей: " + operations.default_multiplication_result());
+            System.out.println("Частное дробей: " + operations.default_division_result());
         }
         //Обработка ошибки ввода
         catch (InputMismatchException exception) {
